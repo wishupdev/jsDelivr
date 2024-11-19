@@ -137,7 +137,7 @@
                   <button
                     id="appleButton"
                     class="qr-button active"
-                    data-img="https://cms-assets.wishup.co/AppDownloadBannerAssets/appleQR.svg"
+                    data-img="https://cms-assets.wishup.co/AppDownloadBannerAssets/appleQR.png"
                     data-link="https://apps.apple.com/in/app/wishup-office-in-your-pocket/id6477771600"
                     data-target="apple"
                   >
