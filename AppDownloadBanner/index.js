@@ -119,7 +119,7 @@
                 <div class="qr-code-image-box">
                   <img
                     id="qrCodeImage"
-                    src="https://cms-assets.wishup.co/AppDownloadBannerAssets/appleQR.svg"
+                    src="https://cms-assets.wishup.co/AppDownloadBannerAssets/appleQR.png"
                     alt="QR Code"
                     class="qr-code-image"
                   />
@@ -128,7 +128,7 @@
                   <button
                     id="googleButton"
                     class="qr-button"
-                    data-img="https://cms-assets.wishup.co/AppDownloadBannerAssets/apkQR.svg"
+                    data-img="https://cms-assets.wishup.co/AppDownloadBannerAssets/apkQR.png"
                     data-link="https://play.google.com/store/apps/details?id=com.wishup.clientapp"
                     data-target="google"
                   >
