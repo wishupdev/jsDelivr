@@ -2,10 +2,15 @@
   try {
     // QR Code Module
     const QRCodeModule = {
+      config: {
+        position: "left-bottom", // Default position: right-bottom
+      },
+
       init() {
         this.injectStyles();
         this.injectHTML();
         this.attachEventListeners();
+        this.applyPosition();
       },
 
       injectStyles() {
@@ -15,8 +20,9 @@
               height: auto;
               position: fixed;
               z-index: 900;
-              right: 40px;
-              bottom: 80px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
             }
         
             .qr-code-box {
@@ -86,9 +92,7 @@
             }
         
             .toggle-button {
-              position: absolute;
-              bottom: -48px;
-              right: 33px;
+              margin-top: 10px;
               width: 31px;
               height: 31px;
               display: flex;
@@ -187,6 +191,29 @@
         });
       },
 
+      applyPosition() {
+        const qrContainer = document.querySelector(".qr-code-container");
+        switch (this.config.position) {
+          case "left-bottom":
+            qrContainer.style.left = "40px";
+            qrContainer.style.bottom = "80px";
+            qrContainer.style.right = "auto";
+            break;
+          case "center":
+            qrContainer.style.left = "50%";
+            qrContainer.style.bottom = "80px";
+            qrContainer.style.right = "auto";
+            qrContainer.style.transform = "translateX(-50%)";
+            break;
+          case "right-bottom":
+          default:
+            qrContainer.style.right = "40px";
+            qrContainer.style.bottom = "80px";
+            qrContainer.style.left = "auto";
+            break;
+        }
+      },
+
       updateQR(imgSrc, link, selected) {
         const qrCodeImage = document.getElementById("qrCodeImage");
         const downloadLink = document.getElementById("downloadLink");
@@ -211,7 +238,8 @@
       },
     };
 
-    // Initialize the module
+    // Update config to set position
+    QRCodeModule.config.position = "center"; // Set to "left-bottom", "right-bottom", or "center"
     QRCodeModule.init();
   } catch (error) {
     console.error("Failed to inject QR banner:", error);
