@@ -1,15 +1,15 @@
 (function () {
-    try {
-      // QR Code Module
-      const QRCodeModule = {
-        init() {
-          this.injectStyles();
-          this.injectHTML();
-          this.attachEventListeners();
-        },
-  
-        injectStyles() {
-          const css = `
+  try {
+    // QR Code Module
+    const QRCodeModule = {
+      init() {
+        this.injectStyles();
+        this.injectHTML();
+        this.attachEventListeners();
+      },
+
+      injectStyles() {
+        const css = `
             .qr-code-container {
               width: 180px;
               height: auto;
@@ -18,14 +18,14 @@
               right: 40px;
               bottom: 80px;
             }
-  
+        
             .qr-code-box {
               background: linear-gradient(97.15deg, #00427f 0%, rgba(13, 129, 237, 1) 99.57%);
               border-radius: 10px;
               padding: 12px 8px;
               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             }
-  
+        
             .qr-code-image-box {
               background-color: #ffffff;
               border-radius: 6px;
@@ -35,7 +35,7 @@
               width: 142px;
               height: 142px;
             }
-  
+        
             .qr-code-image {
               border-radius: 6px;
               width: 100%;
@@ -43,13 +43,13 @@
               margin: 0 auto;
               display: block;
             }
-  
+        
             .button-group {
               display: flex;
               justify-content: space-around;
               margin-bottom: 15px;
             }
-  
+        
             .qr-button {
               background: transparent;
               border: 1px solid transparent;
@@ -58,18 +58,18 @@
               font-size: 18px;
               cursor: pointer;
             }
-  
+        
             .qr-button.active {
               border-color: white;
             }
-  
+        
             .qr-button .icon {
               display: flex;
               justify-content: center;
               align-items: center;
               color: #ffffff;
             }
-  
+        
             .download-link {
               display: block;
               font-weight: 500;
@@ -79,12 +79,12 @@
               margin-top: 10px;
               font-size: 17px;
             }
-  
+        
             .download-link:hover {
               text-decoration: none;
               color: #ffffff;
             }
-  
+        
             .toggle-button {
               position: absolute;
               bottom: -48px;
@@ -102,18 +102,25 @@
               cursor: pointer;
               font-size: 12px;
             }
-  
+        
             .qr-code-container.hidden .qr-code-box {
               display: none;
             }
+        
+            /* Hide the banner on mobile devices */
+            @media screen and (max-width: 768px) {
+              .qr-code-container {
+                display: none;
+              }
+            }
           `;
-          const style = document.createElement("style");
-          style.textContent = css;
-          document.head.appendChild(style);
-        },
-  
-        injectHTML() {
-          const componentHTML = `
+        const style = document.createElement("style");
+        style.textContent = css;
+        document.head.appendChild(style);
+      },
+
+      injectHTML() {
+        const componentHTML = `
             <div class="qr-code-container">
               <div class="qr-code-box">
                 <div class="qr-code-image-box">
@@ -158,59 +165,55 @@
               </button>
             </div>
           `;
-          const div = document.createElement("div");
-          div.innerHTML = componentHTML;
-          document.body.appendChild(div);
-        },
-  
-        attachEventListeners() {
-          document.querySelectorAll(".qr-button").forEach((button) => {
-            button.addEventListener("click", (event) => {
-              const target = event.currentTarget;
-              this.updateQR(
-                target.dataset.img,
-                target.dataset.link,
-                target.dataset.target
-              );
-            });
+        const div = document.createElement("div");
+        div.innerHTML = componentHTML;
+        document.body.appendChild(div);
+      },
+
+      attachEventListeners() {
+        document.querySelectorAll(".qr-button").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const target = event.currentTarget;
+            this.updateQR(
+              target.dataset.img,
+              target.dataset.link,
+              target.dataset.target
+            );
           });
-  
-          document.getElementById("toggleQR").addEventListener("click", () => {
-            this.toggleQR();
-          });
-        },
-  
-        updateQR(imgSrc, link, selected) {
-          const qrCodeImage = document.getElementById("qrCodeImage");
-          const downloadLink = document.getElementById("downloadLink");
-          const buttons = document.querySelectorAll(".qr-button");
-  
-          qrCodeImage.src = imgSrc;
-          downloadLink.href = link;
-  
-          buttons.forEach((button) =>
-            button.classList.toggle(
-              "active",
-              button.dataset.target === selected
-            )
-          );
-        },
-  
-        toggleQR() {
-          const qrContainer = document.querySelector(".qr-code-container");
-          const closeButton = document.getElementById("toggleQR");
-  
-          qrContainer.classList.toggle("hidden");
-          closeButton.innerHTML = qrContainer.classList.contains("hidden")
-            ? '<img src="https://cms-assets.wishup.co/AppDownloadBannerAssets/download.png" height="14px" width="14px" class="download-center"/>'
-            : "X";
-        },
-      };
-  
-      // Initialize the module
-      QRCodeModule.init();
-    } catch (error) {
-      console.error("Failed to inject QR banner:", error);
-    }
-  })();
-  
+        });
+
+        document.getElementById("toggleQR").addEventListener("click", () => {
+          this.toggleQR();
+        });
+      },
+
+      updateQR(imgSrc, link, selected) {
+        const qrCodeImage = document.getElementById("qrCodeImage");
+        const downloadLink = document.getElementById("downloadLink");
+        const buttons = document.querySelectorAll(".qr-button");
+
+        qrCodeImage.src = imgSrc;
+        downloadLink.href = link;
+
+        buttons.forEach((button) =>
+          button.classList.toggle("active", button.dataset.target === selected)
+        );
+      },
+
+      toggleQR() {
+        const qrContainer = document.querySelector(".qr-code-container");
+        const closeButton = document.getElementById("toggleQR");
+
+        qrContainer.classList.toggle("hidden");
+        closeButton.innerHTML = qrContainer.classList.contains("hidden")
+          ? '<img src="https://cms-assets.wishup.co/AppDownloadBannerAssets/download.png" height="14px" width="14px" class="download-center"/>'
+          : "X";
+      },
+    };
+
+    // Initialize the module
+    QRCodeModule.init();
+  } catch (error) {
+    console.error("Failed to inject QR banner:", error);
+  }
+})();
