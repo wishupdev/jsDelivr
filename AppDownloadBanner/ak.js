@@ -193,6 +193,8 @@
 
       applyPosition() {
         const qrContainer = document.querySelector(".qr-code-container");
+        qrContainer.style.transform = ""; // Reset the transform property
+      
         switch (this.config.position) {
           case "left-bottom":
             qrContainer.style.left = "40px";
@@ -203,7 +205,7 @@
             qrContainer.style.left = "50%";
             qrContainer.style.bottom = "80px";
             qrContainer.style.right = "auto";
-            qrContainer.style.transform = "translateX(-50%)";
+            qrContainer.style.transform = "translateX(-50%)"; // Only apply for center
             break;
           case "right-bottom":
           default:
