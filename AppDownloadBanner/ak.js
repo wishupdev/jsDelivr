@@ -241,7 +241,7 @@
     };
 
     // Update config to set position
-    QRCodeModule.config.position = "center"; // Set to "left-bottom", "right-bottom", or "center"
+    QRCodeModule.config.position = "left-bottom"; // Set to "left-bottom", "right-bottom", or "center"
     QRCodeModule.init();
   } catch (error) {
     console.error("Failed to inject QR banner:", error);
