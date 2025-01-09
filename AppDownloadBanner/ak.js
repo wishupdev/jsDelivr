@@ -194,11 +194,11 @@
       applyPosition() {
         const qrContainer = document.querySelector(".qr-code-container");
         qrContainer.style.transform = ""; // Reset the transform property
-      
+
         switch (this.config.position) {
           case "left-bottom":
-            qrContainer.style.left = "40px";
-            qrContainer.style.bottom = "80px";
+            qrContainer.style.left = "30px";
+            qrContainer.style.bottom = "30px";
             qrContainer.style.right = "auto";
             break;
           case "center":
@@ -209,8 +209,8 @@
             break;
           case "right-bottom":
           default:
-            qrContainer.style.right = "40px";
-            qrContainer.style.bottom = "80px";
+            qrContainer.style.right = "30px";
+            qrContainer.style.bottom = "30px";
             qrContainer.style.left = "auto";
             break;
         }
