@@ -161,7 +161,7 @@
                   target="_blank"
                   class="download-link"
                 >
-                  Download Our App
+                  Download Our Workforce Management App
                 </a>
               </div>
               <button id="toggleQR" class="toggle-button">
@@ -197,8 +197,8 @@
 
         switch (this.config.position) {
           case "left-bottom":
-            qrContainer.style.left = "30px";
-            qrContainer.style.bottom = "30px";
+            qrContainer.style.left = "50px";
+            qrContainer.style.bottom = "5px";
             qrContainer.style.right = "auto";
             break;
           case "center":
